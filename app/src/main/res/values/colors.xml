@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Colors -->
+    <color name="ThemeColor">#23D3C0</color>
+    <color name="BG_Main_Color">#10E9CA</color>
+    <color name="BG_Secondary_Color">#17A595</color>
+    <color name="ButtonColor">#14B8A6</color>
+
+    <color name="CardMainColor">#F2F2F2</color>
+    <color name="ShadowColor">#14B8A6</color>
+
+
 </resources>
