@@ -22,17 +22,25 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to Salamtech"
+            android:text="Finish"
             android:textSize="32sp"
-            android:translationX="40dp"
-            android:translationY="70dp"></TextView>
+            android:translationX="160dp"
+            android:translationY="50dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You are ready to go 😊"
+            android:textSize="20sp"
+            android:translationX="100dp"
+            android:translationY="100dp"/>
 
         <Button
             android:id="@+id/buttonStart"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/ButtonColor"
-            android:text="Start"
+            android:text="@string/start"
             android:translationX="30dp"
             android:translationY="180dp"
             app:cornerRadius="8dp" />

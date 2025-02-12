@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="0dp"
-    tools:context=".start_activity_1">
+    tools:context=".start_activity_4">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="400dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="370dp"
 
         app:cardBackgroundColor="#f2F2F2"
         app:cardCornerRadius="31dp"
@@ -22,33 +23,46 @@
         <androidx.cardview.widget.CardView
             app:cardBackgroundColor="#F2F2F2"
             android:layout_width="380dp"
-            android:layout_height="400dp"
+            android:layout_height="450dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:cardUseCompatPadding="false"
-            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/title0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/setup"
+                android:textSize="32sp"
+                app:navigationIcon="@drawable/back_arrow"
+                app:titleTextColor="@android:color/white" />
 
+            <TextView
+                android:id="@+id/sub_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="60dp"
+                android:text="@string/find_your_watch"
+                android:textColor="#343A40"
+                android:textSize="20sp"
+                app:navigationIcon="@drawable/back_arrow"
+                app:titleTextColor="@android:color/white" />
 
-            <ImageView
-                android:id="@+id/logoImage"
-                android:layout_width="255dp"
-                android:layout_height="242dp"
-                android:layout_marginStart="65dp"
-                android:layout_marginTop="40dp"
-                android:contentDescription="@string/salamtechlogo"
-                android:src="@drawable/languages" />
 
             <ImageView
                 android:id="@+id/back_arrow"
-                android:layout_margin="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:contentDescription="@string/back_arrow"
                 android:src="@drawable/back_arrow" />
 
@@ -56,23 +70,39 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_1_5"
+                android:text="@string/_4_5"
                 android:translationX="350dp"
                 android:translationY="30dp" />
+            <ImageView
+                android:id="@+id/reload_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/refresh"
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/button_next"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="320dp"
                 android:backgroundTint="@color/ButtonColor"
-                android:text="@string/next"
+                android:text="@string/login"
                 app:cornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="175dp"
+                android:layout_marginTop="390dp"
+                android:text="@string/skip"
+                android:textColor="@color/gray_with_70_opacity"
+                android:textSize="14sp" />
+
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
 

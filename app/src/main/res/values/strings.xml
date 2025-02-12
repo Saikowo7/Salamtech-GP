@@ -35,4 +35,12 @@
     <string name="eye_svg_icon">eye_svg_icon</string>
     <string name="_1_5">1/5</string>
     <string name="next">Next</string>
+    <string name="_3_5">3/5</string>
+    <string name="login">Login</string>
+    <string name="setup">Setup</string>
+    <string name="_4_5">4/5</string>
+    <string name="find_your_watch">Find your watch</string>
+    <string name="skip">Skip</string>
+    <string name="welcome_to_salamtech">Welcome to Salamtech</string>
+    <string name="start">Start</string>
 </resources>

@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="0dp"
-    tools:context=".start_activity_1">
+    tools:context=".start_activity_2">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="800dp"
@@ -21,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
+            app:cardBackgroundColor="#F2F2F2"
             android:layout_width="380dp"
             android:layout_height="550dp"
             android:layout_marginStart="15dp"

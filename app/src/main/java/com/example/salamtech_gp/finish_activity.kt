@@ -8,19 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 
-class start_activity_3 : Fragment() {
+class finish_activity : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_start_activity_3, container, false)
+        val view = inflater.inflate(R.layout.fragment_finish_activity, container, false)
 
-        view.findViewById<Button>(R.id.button_next).setOnClickListener {
+        //Click event for button id = buttonStart
+        view.findViewById<Button>(R.id.buttonStart).setOnClickListener {
+            //loading fragment to what is inside the parameter()!!
             (activity as SetupPage).loadFragment(start_activity_4())
-        }
-
-        view.findViewById<ImageView>(R.id.back_arrow).setOnClickListener {
-            (activity as SetupPage).loadFragment(start_activity_2())
         }
 
         return view
     }
-
 }

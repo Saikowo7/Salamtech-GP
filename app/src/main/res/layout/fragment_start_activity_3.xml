@@ -1,13 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="0dp"
     tools:context=".start_activity_3">
 
-    <TextView
+
+    <androidx.cardview.widget.CardView
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="550dp"
+        android:layout_marginTop="370dp"
+
+        app:cardBackgroundColor="#f2F2F2"
+        app:cardCornerRadius="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            app:cardBackgroundColor="#F2F2F2"
+            android:layout_width="380dp"
+            android:layout_height="400dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="false"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/title0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/login"
+                android:textSize="32sp"
+                app:navigationIcon="@drawable/back_arrow"
+                app:titleTextColor="@android:color/white" />
+
+
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_margin="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/back_arrow"
+                android:src="@drawable/back_arrow" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_3_5"
+                android:translationX="350dp"
+                android:translationY="30dp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginStart="15dp"
+                app:cardElevation="4dp"
+                android:translationZ="2dp"
+                app:cardCornerRadius="31dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="#B0B0B0"
+                    app:boxStrokeWidth="0dp"
+                    app:boxCornerRadiusTopStart="31dp"
+                    app:boxCornerRadiusTopEnd="31dp"
+                    app:boxCornerRadiusBottomStart="31dp"
+                    app:boxCornerRadiusBottomEnd="31dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="150dp"
+                android:translationZ="2dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="31dp"
+                app:cardElevation="4dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/eye_svg_icon"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="300dp"
+                    android:contentDescription="@string/eye_svg_icon" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="31dp"
+                    app:boxCornerRadiusBottomStart="31dp"
+                    app:boxCornerRadiusTopEnd="31dp"
+                    app:boxCornerRadiusTopStart="31dp"
+                    app:boxStrokeColor="#B0B0B0"
+                    app:boxStrokeWidth="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/button_next"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="230dp"
+                android:backgroundTint="@color/ButtonColor"
+                android:text="@string/login"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/already_have_an_account_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/i_already_have_an_account"
+                android:textSize="14sp"
+                android:layout_marginTop="290dp"
+                android:layout_marginStart="110dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_with_70_opacity"
+                android:text="@string/sign_in_using"
+                android:textSize="14sp"
+                android:layout_marginTop="320dp"
+                android:layout_marginStart="150dp"
+                />
+
+            <ImageView
+                android:layout_marginTop="350dp"
+                android:layout_marginStart="170dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/apple_icon"
+                android:contentDescription="@string/apple_icon" />
+            <ImageView
+                android:layout_marginTop="350dp"
+                android:layout_marginStart="100dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/google_icon"
+                android:contentDescription="@string/google_icon" />
+            <ImageView
+                android:layout_marginTop="350dp"
+                android:layout_marginStart="240dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/facebook_icon"
+                android:contentDescription="@string/facebook_icon" />
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>
