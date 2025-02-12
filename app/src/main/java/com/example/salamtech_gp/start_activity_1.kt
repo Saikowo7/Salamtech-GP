@@ -1,15 +1,11 @@
 package com.example.salamtech_gp
 
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
 import android.widget.Button
-import android.widget.Toolbar
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 
 
@@ -22,11 +18,11 @@ class start_activity_1 : Fragment() {
             (activity as SetupPage).loadFragment(start_activity_2())
         }
 
-        view.findViewById<Toolbar>(R.id.toolbar_back).setOnClickListener {
-            //finish
-
-
+        view.findViewById<ImageView>(R.id.back_arrow).setOnClickListener {
+            (activity as SetupPage).loadFragment(StartActivity_0())
         }
+
+
 
         return view
     }

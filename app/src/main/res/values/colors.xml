@@ -13,6 +13,12 @@
     <color name="CardMainColor">#F2F2F2</color>
     <color name="ShadowColor">#14B8A6</color>
 
+    <!--  Icon colors  -->
+    <color name="iconColor">#99343A40</color>
+
+    <!--  gray label  -->
+    <color name="gray_with_70_opacity">#B3343A40</color>
+
     <!--  homepage colors  -->
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>

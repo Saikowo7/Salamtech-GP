@@ -7,7 +7,7 @@
     <string name="label_text_string">Home</string>
     <string name="label_text_ek1_string">Browse</string>
     <string name="label_text_ek2_string">Settings</string>
-    <string name="supporting_text_string">Search anything...</string>
+    <string name="supporting_text_string">Search anything…</string>
     <string name="dashboard_string">Dashboard</string>
     <string name="welcome__jone_string">Welcome, Jone</string>
     <string name="stats_string">Stats</string>
@@ -18,6 +18,21 @@
     <string name="your_device_string">Your device</string>
     <string name="button_ek1_string">Setup</string>
     <string name="you_currently_have_no_device__please_setup_a_device__string">You currently have no device.Please setup a device.</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="i_already_have_an_account">I already have an account</string>
+    <string name="sign_in_using">Sign in using</string>
+    <string name="back_arrow">Back Arrow</string>
+    <string name="create_account">Create Account</string>
+    <string name="_2_5">2/5</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="facebook_icon">Facebook_Icon</string>
+    <string name="google_icon">google_icon</string>
+    <string name="apple_icon">apple_icon</string>
+    <string name="eye_svg_icon">eye_svg_icon</string>
+    <string name="_1_5">1/5</string>
+    <string name="next">Next</string>
 </resources>
