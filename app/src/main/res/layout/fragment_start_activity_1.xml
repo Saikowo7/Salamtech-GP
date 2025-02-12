@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="0dp"
+    tools:context=".start_activity_1">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="400dp"
+
+        app:cardBackgroundColor="#f2F2F2"
+        app:cardCornerRadius="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="380dp"
+            android:layout_height="400dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="false"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:titleTextColor="@android:color/white"
+                app:navigationIcon="@drawable/back_arrow"/>
+
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="255dp"
+                android:layout_height="242dp"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="40dp"
+                android:contentDescription="@string/salamtechlogo"
+                android:src="@drawable/languages" />
+
+            <TextView
+
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/5"
+                android:translationX="350dp"
+                android:translationY="30dp"></TextView>
+
+            <Button
+                android:id="@+id/button_next"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="300dp"
+                android:backgroundTint="@color/ButtonColor"
+                android:text="Start"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

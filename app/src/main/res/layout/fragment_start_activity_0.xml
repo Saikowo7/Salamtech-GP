@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".StartActivity_0">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="560dp"
+
+        app:cardBackgroundColor="#F2F2F2"
+        app:cardCornerRadius="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Salamtech"
+            android:textSize="32sp"
+            android:translationX="40dp"
+            android:translationY="70dp"></TextView>
+
+        <Button
+            android:id="@+id/buttonStart"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/ButtonColor"
+            android:text="Start"
+            android:translationX="30dp"
+            android:translationY="180dp"
+            app:cornerRadius="8dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
