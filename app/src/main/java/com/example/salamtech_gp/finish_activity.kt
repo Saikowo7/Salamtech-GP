@@ -1,5 +1,6 @@
 package com.example.salamtech_gp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,8 +15,9 @@ class finish_activity : Fragment() {
 
         //Click event for button id = buttonStart
         view.findViewById<Button>(R.id.buttonStart).setOnClickListener {
-            //loading fragment to what is inside the parameter()!!
-            (activity as SetupPage).loadFragment(start_activity_4())
+            val intent = Intent(requireContext(), main_activity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
         return view

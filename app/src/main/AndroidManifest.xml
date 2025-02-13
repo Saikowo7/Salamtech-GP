@@ -13,13 +13,13 @@
         android:theme="@style/Theme.SalamtechGP"
         tools:targetApi="31">
         <activity
-            android:name=".Homepage"
+            android:name=".main_activity"
             android:exported="false" />
         <activity
             android:name=".SetupPage"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main_intro"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

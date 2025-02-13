@@ -21,10 +21,12 @@ class start_activity_4 : Fragment() {
 
         reloadIcon.startAnimation(rotateAnimation)
 
+        //next button
         view.findViewById<Button>(R.id.button_next).setOnClickListener {
             (activity as SetupPage).loadFragment(finish_activity())
         }
 
+        //previous button
         view.findViewById<ImageView>(R.id.back_arrow).setOnClickListener {
             (activity as SetupPage).loadFragment(start_activity_3())
         }

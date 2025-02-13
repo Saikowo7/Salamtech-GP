@@ -43,4 +43,8 @@
     <string name="skip">Skip</string>
     <string name="welcome_to_salamtech">Welcome to Salamtech</string>
     <string name="start">Start</string>
+    <string name="home_icon">home_icon</string>
+    <string name="search_anything">Search anything...</string>
+    <string name="menu_search">menu_search</string>
+    <string name="heart_icon">heart_icon</string>
 </resources>
