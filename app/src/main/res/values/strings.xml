@@ -47,4 +47,6 @@
     <string name="search_anything">Search anything...</string>
     <string name="menu_search">menu_search</string>
     <string name="heart_icon">heart_icon</string>
+    <string name="info">Info</string>
+    <string name="dismiss">Dismiss</string>
 </resources>

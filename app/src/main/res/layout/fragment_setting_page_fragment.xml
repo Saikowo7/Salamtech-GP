@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="40dp"
+    android:padding="20dp"
     android:background="@android:color/white"
     tools:context=".setting_page_fragment">
 
@@ -47,12 +48,18 @@
             android:padding="16dp">
 
             <!-- Profile Image -->
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/apple_icon"
-                android:background="@drawable/apple_icon"
-                android:scaleType="centerCrop"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/user_icon"
+                    android:scaleType="centerCrop"/>
+            </androidx.cardview.widget.CardView>
 
             <!-- User Info -->
             <LinearLayout

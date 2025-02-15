@@ -72,6 +72,7 @@
                 app:cardElevation="4dp">
 
                 <ImageView
+                    android:id="@+id/profile_picture_id"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/user_icon"
@@ -156,7 +157,6 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp" />
 
-
                     <!-- CardView with shadow -->
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -192,12 +192,13 @@
                                 android:textStyle="bold"/>
 
                             <Button
+
                                 android:layout_marginTop="20dp"
-                                android:id="@+id/buttonStart"
+                                android:id="@+id/button_setup_to_devices"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:backgroundTint="@color/ButtonColor"
-                                android:text="Start"
+                                android:text="Setup"
                                 app:cornerRadius="8dp" />
                         </LinearLayout>
 
@@ -257,7 +258,7 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
-                <!-- Section: Your device -->
+                <!-- Section: Stats -->
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -349,6 +350,131 @@
                     </FrameLayout>
                 </androidx.cardview.widget.CardView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="AI Monitoring"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+                <!-- Section: AI monitoring -->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="31dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardUseCompatPadding="true">
+
+                    <FrameLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="16dp"
+                        android:background="@drawable/card_background"
+                        android:elevation="8dp">
+
+                        <!-- Top Section: Heart Icon + BPM -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/anomaly"
+                                android:layout_marginEnd="8dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Anomaly"
+                                android:textStyle="bold"
+                                android:textSize="18sp"/>
+                        </LinearLayout>
+
+                        <!-- Middle Section: Graph View -->
+                        <TextView
+                            android:text="Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginStart="22dp"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_marginTop="80dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:text="@string/info"
+                                android:layout_gravity="center"
+                                android:backgroundTint="#DC3545"
+                                app:cornerRadius="8dp"
+                                android:layout_marginEnd="10dp"/>
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="@color/ButtonColor"
+                                android:text="@string/dismiss"
+                                app:cornerRadius="8dp"
+                                android:layout_gravity="center"/>
+                        </LinearLayout>
+
+
+                        <!-- Bottom Section: Dots Indicator -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginTop="16dp">
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:background="@drawable/dot_selected"
+                                android:layout_margin="4dp"/>
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:background="@drawable/dot_unselected"
+                                android:layout_margin="4dp"/>
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:background="@drawable/dot_unselected"
+                                android:layout_margin="4dp"/>
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:background="@drawable/dot_unselected"
+                                android:layout_margin="4dp"/>
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:background="@drawable/dot_unselected"
+                                android:layout_margin="4dp"/>
+                        </LinearLayout>
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
 
 
 
