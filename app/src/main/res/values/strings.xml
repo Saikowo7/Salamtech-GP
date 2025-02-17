@@ -49,4 +49,9 @@
     <string name="heart_icon">heart_icon</string>
     <string name="info">Info</string>
     <string name="dismiss">Dismiss</string>
+    <string name="pill_detail_text_1">Tablets and Caplets: Standard forms containing 500 mg of paracetamol per unit.</string>
+    <string name="pill_detail_text_2">Instruction: Take 1–2 Panadol tablets (500–1000 mg) every 4–6 hours as needed, not exceeding 8 tablets (4000 mg) in 24 hours.</string>
+    <string name="health_history_detail_text_1">Personalized Insights: Receive AI-powered recommendations tailored to your health data to stay proactive and informed.</string>
+    <string name="health_history_detail_text_2">Great job staying healthy! Keep up the good work and remember, every small step adds to your well-being. Stay active and take care!</string>
+    <string name="anomaly_text_1">Heart rate spiked to 150 bpm at 2:35 PM. Recommended Action: Rest immediately. If you feel unwell, contact a doctor.</string>
 </resources>

@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "887033596835",
+    "firebase_url": "https://salamatech-database-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "salamatech-database",
+    "storage_bucket": "salamatech-database.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887033596835:android:2368fba5be1ab01e036816",
+        "android_client_info": {
+          "package_name": "com.example.salamtech_gp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCICbhVK3akW36x7rCgqh-kMAYk_nEmKoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

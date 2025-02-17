@@ -82,12 +82,13 @@
                 app:boxCornerRadiusBottomStart="31dp"
                 app:boxCornerRadiusBottomEnd="31dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/full_name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,6 +118,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="12dp"
@@ -156,8 +158,8 @@
                     app:boxStrokeWidth="0dp">
 
 
-
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="12dp"
@@ -199,6 +201,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/confirm_password_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="12dp"
