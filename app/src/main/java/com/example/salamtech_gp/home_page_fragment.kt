@@ -9,9 +9,14 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ScrollView
+import android.widget.TextView
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.ViewModelProvider
 
 class home_page_fragment : Fragment() {
+
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var welcomeText: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +32,15 @@ class home_page_fragment : Fragment() {
         val scrollView = view.findViewById<ScrollView>(R.id.scroll_view_homepage)
         val button_setup_to_devices = view.findViewById<Button>(R.id.button_setup_to_devices)
         val imageView = view.findViewById<ImageView>(R.id.profile_picture_id)
+
+        //Changing welcome text to user name by retrieving it from userViewModel
+        welcomeText = view.findViewById(R.id.welcomeTextView)
+
+        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+
+        userViewModel.userProfile.observe(viewLifecycleOwner) { user ->
+            welcomeText.text = "Welcome, ${user.fullName}"
+        }
 
         //on button setup click move to devices fragment
         button_setup_to_devices.setOnClickListener {

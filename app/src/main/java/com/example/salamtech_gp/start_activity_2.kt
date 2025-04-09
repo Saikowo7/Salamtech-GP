@@ -1,12 +1,14 @@
 package com.example.salamtech_gp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -30,6 +32,17 @@ class start_activity_2 : Fragment() {
 
         view.findViewById<ImageView>(R.id.back_arrow).setOnClickListener {
             (activity as SetupPage).loadFragment(start_activity_1())
+        }
+
+        val goToLoginText = view.findViewById<TextView>(R.id.haveAccountTextView)
+
+        goToLoginText.setOnClickListener {
+            val currentActivity = activity
+            if (currentActivity is SetupPage) {
+                currentActivity.loadFragment(start_activity_3())
+            } else {
+                Log.e("Navigation", "Activity is not SetupPage")
+            }
         }
 
         // Firebase

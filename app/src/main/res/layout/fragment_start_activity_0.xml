@@ -28,7 +28,7 @@
             android:translationY="70dp"></TextView>
 
         <Button
-            android:id="@+id/buttonStart"
+            android:id="@+id/logoutButton"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/ButtonColor"
