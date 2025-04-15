@@ -25,6 +25,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import org.json.JSONObject
@@ -51,6 +52,7 @@ class profile_page_fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val viewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         val backArrow: ImageView = view.findViewById(R.id.back_arrow)
         val logoutButton = view.findViewById<Button>(R.id.logoutButton)
         val uploadButton = view.findViewById<CardView>(R.id.uploadButtonCardView)
@@ -58,6 +60,15 @@ class profile_page_fragment : Fragment() {
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val dbRef = FirebaseDatabase.getInstance().reference
+
+        //Loading profile image
+        viewModel.fetchProfileImageUrl()
+        viewModel.profileImageUrl.observe(viewLifecycleOwner) { url ->
+            Glide.with(requireContext())
+                .load(url)
+                .circleCrop()
+                .into(profileImageView)
+        }
 
         dbRef.child("users").child(uid).child("profile").child("profileImageUrl")
             .get()
@@ -134,13 +145,6 @@ class profile_page_fragment : Fragment() {
 
                     requireActivity().runOnUiThread {
                         Toast.makeText(context, "Uploaded successfully", Toast.LENGTH_SHORT).show()
-
-                        // Optionally: Update profile image view with Glide
-                        Glide.with(requireContext())
-                            .load(imageUrl)
-                            .into(profileImageView)
-
-
 
                         // Optionally: Save imageUrl to Firebase
                         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return@runOnUiThread

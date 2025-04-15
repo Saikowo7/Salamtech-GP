@@ -31,6 +31,7 @@ class start_activity_4 : Fragment() {
         //next button
         view.findViewById<Button>(R.id.button_next).setOnClickListener {
             (activity as SetupPage).loadFragment(finish_activity())
+
         }
 
         //previous button

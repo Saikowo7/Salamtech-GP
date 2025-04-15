@@ -1,5 +1,6 @@
 package com.example.salamtech_gp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +15,10 @@ class finish_activity : Fragment() {
 
         //Click event for button id = buttonStart
         view.findViewById<Button>(R.id.logoutButton).setOnClickListener {
+            val sharedPref = requireActivity().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+            sharedPref.edit().putBoolean("isSetupComplete", true).apply()
+
+
             val intent = Intent(requireContext(), main_activity::class.java)
             startActivity(intent)
             requireActivity().finish()

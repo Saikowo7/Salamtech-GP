@@ -47,7 +47,9 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.okhttp)
     implementation(libs.firebase.auth)
+    implementation(libs.mpandroidchart)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

@@ -20,6 +20,8 @@ class main_intro : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main_intro)
 
+
+
         // Write a test value to Firebase
         Log.d("FirebaseDebug", "Going in!!")
         val db = FirebaseDatabase.getInstance().reference
@@ -43,8 +45,8 @@ class main_intro : AppCompatActivity() {
         rotatingView.startAnimation(rotateAnimation)
 
         android.os.Handler().postDelayed({
-            val intent = Intent(this, SetupPage::class.java)
-            startActivity(intent)
+
+            startActivity(Intent(this, SetupPage::class.java))
             finish()
             }, 3000)
 

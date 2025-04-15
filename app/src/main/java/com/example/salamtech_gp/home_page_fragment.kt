@@ -12,6 +12,7 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 
 class home_page_fragment : Fragment() {
 
@@ -28,10 +29,21 @@ class home_page_fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val viewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         val frameLayout = view.findViewById<FrameLayout>(R.id.profile_card)
         val scrollView = view.findViewById<ScrollView>(R.id.scroll_view_homepage)
         val button_setup_to_devices = view.findViewById<Button>(R.id.button_setup_to_devices)
         val imageView = view.findViewById<ImageView>(R.id.profile_picture_id)
+
+
+        //Loading profile image
+        viewModel.fetchProfileImageUrl()
+        viewModel.profileImageUrl.observe(viewLifecycleOwner) { url ->
+            Glide.with(requireContext())
+                .load(url)
+                .circleCrop()
+                .into(imageView)
+        }
 
         //Changing welcome text to user name by retrieving it from userViewModel
         welcomeText = view.findViewById(R.id.welcomeTextView)
