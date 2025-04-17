@@ -62,9 +62,18 @@ class BleManager(private val context: Context, private val onMessage: (String) -
 
             override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
                 val message = characteristic.getStringValue(0)
-                Log.d("BLEdevice", "Received: $message")
-                onMessage(message)
+                Log.d("BLEdevice", "Raw message: $message")
+
+                val bpm = message.toIntOrNull()
+
+                if (bpm != null && bpm in 40..180) {
+                    Log.d("BLEdevice", "Valid BPM received: $bpm")
+                    onMessage("BPM: $bpm")  // Use this to update UI
+                } else {
+                    Log.w("BLEdevice", "Invalid BPM data received: $message")
+                }
             }
+
         })
     }
 }

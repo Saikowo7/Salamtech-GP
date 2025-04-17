@@ -118,13 +118,15 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mohammed"
+                    android:text="User"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvUserEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="email@email.com"
@@ -146,11 +148,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Section: All -->
+                    <!-- Section: Account Information -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="All"
+                        android:text="Account Information"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginTop="8dp"
@@ -158,16 +160,103 @@
 
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
 
-                    <!-- Setting Items -->
-                    <include layout="@layout/setting_item" />
-                    <include layout="@layout/setting_item" />
-                    <include layout="@layout/setting_item" />
+                    <!-- Username -->
+                    <LinearLayout
+                        android:id="@+id/usernameSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="12dp"
+                        android:background="?attr/selectableItemBackground">
 
-                    <!-- Section: Support -->
+                        <TextView
+                            android:id="@+id/editUsername"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="FullName"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black" />
+
+                        <EditText
+                            android:id="@+id/usernameEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="Enter username"
+                            android:textColor="@android:color/black"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_edit"/>
+                    </LinearLayout>
+
+                    <!-- Email -->
+                    <LinearLayout
+                        android:id="@+id/emailSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="12dp"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:id="@+id/editEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Email"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black" />
+
+                        <EditText
+                            android:id="@+id/emailEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="Enter Email"
+                            android:textColor="@android:color/black"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_edit"/>
+                    </LinearLayout>
+
+                    <!-- Password -->
+                    <LinearLayout
+                        android:id="@+id/passwordSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="12dp"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Change Password"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_media_next"/>
+                    </LinearLayout>
+
+                    <!-- Section: Account Management -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Support"
+                        android:text="Account Management"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginTop="16dp"
@@ -175,8 +264,32 @@
 
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
 
-                    <include layout="@layout/setting_item" />
-                    <include layout="@layout/setting_item" />
+                    <!-- Delete Account -->
+                    <LinearLayout
+                        android:id="@+id/deleteAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="12dp"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Delete Account"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/holo_red_dark" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_delete"
+                            android:tint="@android:color/holo_red_dark" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
