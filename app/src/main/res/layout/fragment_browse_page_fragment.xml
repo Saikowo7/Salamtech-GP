@@ -160,6 +160,7 @@
 
                 <!-- Section: Your device -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/PersonalPillsCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -260,7 +261,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:backgroundTint="@color/ButtonColor"
-                            android:text="Contact a Doctor"
+                            android:text="Dismiss"
                             app:cornerRadius="8dp" />
                         <!-- Bottom Section: Dots Indicator -->
                         <LinearLayout

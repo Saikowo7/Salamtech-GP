@@ -183,7 +183,6 @@ class profile_page_fragment : Fragment() {
                     tvName.text = name ?: "Name not found"
                     tvEmail.text = email ?: "Email not found"
 
-
                     editUsername.text = name ?: "Name not found"
                     editEmail.text = email ?: "Email not found"
                 }
