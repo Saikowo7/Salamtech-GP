@@ -40,14 +40,8 @@ class start_activity_4 : Fragment() {
             (activity as SetupPage).loadFragment(start_activity_3())
         }
 
-        Log.d("BLEdevice", "Starting ble")
-        // Initialize BLE Manager and define what to do when message is received
-        bleManager = BleManager(requireContext()) { message ->
-            requireActivity().runOnUiThread {
-                Log.d("BLEdevice", "something is going on!!")
-                Toast.makeText(requireContext(), "BLE: $message", Toast.LENGTH_SHORT).show()
-            }
-        }
+
+
 
         // Request BLE permissions if not granted
         val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()

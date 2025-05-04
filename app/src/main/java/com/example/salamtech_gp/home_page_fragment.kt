@@ -16,51 +16,70 @@ import android.widget.ScrollView
 import android.widget.Toast
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-
 class home_page_fragment : Fragment() {
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var welcomeText: TextView
     private lateinit var bleManager: BleManager
-
+    private val predictionViewModel: PredictionViewModel by activityViewModels()
+    private lateinit var anomalyText: TextView
     private lateinit var bpmChart: LineChart
     private lateinit var bpmDataSet: LineDataSet
     private lateinit var lineData: LineData
     private var entryIndex = 0
+    private var lastKnownBpm: Float? = null
+    private var lastKnownDelta: Float? = null
+    private var lastKnownAvgDelta: Float? = null
+
+    private fun parseBleData(data: String): Map<String, String> {
+        return data.split(",").mapNotNull { entry ->
+            val parts = entry.split(":")
+            if (parts.size == 2) parts[0] to parts[1] else null
+        }.toMap()
+    }
 
     @SuppressLint("MissingPermission")
     private fun initializeBluetoothAndStartScan(bpmTextView: TextView) {
-        Log.d("BLEdevice", "Starting BLE")
-
-        bleManager = BleManager(requireContext()) { message ->
-
+        bleManager = BleManager(requireContext()) { type, message ->
             requireActivity().runOnUiThread {
-                if (message.startsWith("BPM:")) {
-                    val bpm = message.removePrefix("BPM:").trim().toIntOrNull()
-                    if (bpm != null) {
-                        val newEntry = Entry(entryIndex.toFloat(), bpm.toFloat())
-                        bpmDataSet.addEntry(newEntry)
-                        lineData.notifyDataChanged()
-                        bpmChart.notifyDataSetChanged()
-                        bpmChart.setVisibleXRangeMaximum(30f)
-                        bpmChart.moveViewToX(entryIndex.toFloat())
-                        entryIndex++
+                val data = parseBleData(message)
+
+                when (type) {
+                    "bpm" -> {
+                        val avgBpm = data["avg_bpm"]?.toFloatOrNull()
+                        val delta = data["delta"]?.toFloatOrNull()
+                        val avgDelta = data["avg_delta"]?.toFloatOrNull()
+
+                        if (avgBpm != null && delta != null && avgDelta != null && avgBpm > 0) {
+                            val input = floatArrayOf(25f, avgBpm, avgBpm, delta, avgDelta)
+                            predictionViewModel.predictThrottled(input, requireContext())
+                        }
+                    }
+
+                    "gyro" -> {
+                        val gx = data["X"]?.toFloatOrNull()
+                        val gy = data["Y"]?.toFloatOrNull()
+                        val gz = data["Z"]?.toFloatOrNull()
+
+                        if (gx != null && gy != null && gz != null) {
+                            val input = floatArrayOf(gx, gy, gz)
+                            //val activityLabel = ActivityModelHelper.predict(input, requireContext())
+                            //Toast.makeText(requireContext(), "🚶 Activity: $activityLabel", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
-                Log.d("BLEdevice", "Received message: $message")
-                Toast.makeText(requireContext(), "BLE: $message", Toast.LENGTH_SHORT).show()
-                bpmTextView.text = "$message"
             }
         }
 
-        val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
+        val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if (bluetoothAdapter == null) {
             Toast.makeText(requireContext(), "Bluetooth not supported on this device", Toast.LENGTH_SHORT).show()
             return
@@ -78,6 +97,8 @@ class home_page_fragment : Fragment() {
         }
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -87,23 +108,22 @@ class home_page_fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val bpmTextView = view.findViewById<TextView>(R.id.bpmTitleId)
-
-
-
-        val viewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+        anomalyText = view.findViewById(R.id.AnomalyText)
+        welcomeText = view.findViewById(R.id.welcomeTextView)
+        val buttonSetupToDevices = view.findViewById<Button>(R.id.button_setup_to_devices)
+        val imageView = view.findViewById<ImageView>(R.id.profile_picture_id)
         val frameLayout = view.findViewById<FrameLayout>(R.id.profile_card)
         val scrollView = view.findViewById<ScrollView>(R.id.scroll_view_homepage)
-        val button_setup_to_devices = view.findViewById<Button>(R.id.button_setup_to_devices)
-        val imageView = view.findViewById<ImageView>(R.id.profile_picture_id)
 
         bpmChart = view.findViewById(R.id.bpmChart)
-
-        bpmDataSet = LineDataSet(mutableListOf(), "BPM")
-        bpmDataSet.color = Color.RED
-        bpmDataSet.setDrawCircles(false)
-        bpmDataSet.setDrawValues(false)
-        bpmDataSet.lineWidth = 2f
+        bpmDataSet = LineDataSet(mutableListOf(), "BPM").apply {
+            color = Color.RED
+            setDrawCircles(false)
+            setDrawValues(false)
+            lineWidth = 2f
+        }
 
         lineData = LineData(bpmDataSet)
         bpmChart.data = lineData
@@ -113,38 +133,38 @@ class home_page_fragment : Fragment() {
 
         initializeBluetoothAndStartScan(bpmTextView)
 
-        //Loading profile image
-        viewModel.fetchProfileImageUrl()
-        viewModel.profileImageUrl.observe(viewLifecycleOwner) { url ->
+        // ✅ Observe prediction once — outside the scan
+        predictionViewModel.prediction.observe(viewLifecycleOwner) { result ->
+            anomalyText.text = "Prediction: $result"
+        }
+
+        // Profile image loading
+        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+        userViewModel.fetchProfileImageUrl()
+        userViewModel.profileImageUrl.observe(viewLifecycleOwner) { url ->
             Glide.with(requireContext())
                 .load(url)
                 .circleCrop()
                 .into(imageView)
         }
 
-        //Changing welcome text to user name by retrieving it from userViewModel
-        welcomeText = view.findViewById(R.id.welcomeTextView)
-
-        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
-
+        // Welcome text
         userViewModel.userProfile.observe(viewLifecycleOwner) { user ->
             welcomeText.text = "Welcome, ${user.fullName}"
         }
 
-        //on button setup click move to devices fragment
-        button_setup_to_devices.setOnClickListener {
-            val fragment = device_page_fragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.main, fragment) // Replace with your container ID
-                .addToBackStack(null) // Allows back navigation
+        // Navigation
+        buttonSetupToDevices.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, device_page_fragment())
+                .addToBackStack(null)
                 .commit()
         }
 
         imageView.setOnClickListener {
-            val fragment = profile_page_fragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.main, fragment) // Replace with your container ID
-                .addToBackStack(null) // Allows back navigation
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, profile_page_fragment())
+                .addToBackStack(null)
                 .commit()
         }
     }

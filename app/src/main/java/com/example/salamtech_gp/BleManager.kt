@@ -8,13 +8,16 @@ import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import java.util.*
 
 class BleManager(
     private val context: Context,
-    private val onMessage: (String) -> Unit
+    private val onMessageReceived: (String, String) -> Unit // type, message
 ) {
+    private var pendingDescriptorWrites = mutableListOf<BluetoothGattDescriptor>()
+    private var currentGatt: BluetoothGatt? = null
 
     private val adapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
     private val scanner: BluetoothLeScanner? = adapter?.bluetoothLeScanner
@@ -22,6 +25,7 @@ class BleManager(
     private val handler = Handler(Looper.getMainLooper())
 
     private val scanCallback = object : ScanCallback() {
+        @SuppressLint("MissingPermission")
         @androidx.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
         override fun onScanResult(callbackType: Int, result: ScanResult?) {
             result?.device?.let { device ->
@@ -54,47 +58,85 @@ class BleManager(
                 when (newState) {
                     BluetoothProfile.STATE_CONNECTED -> {
                         Log.d("BLEdevice", "Connected to GATT server")
+                        gatt.requestMtu(247)
                         gatt.discoverServices()
+
+                        handler.post {
+                            Toast.makeText(context, "✅ Bluetooth Device Connected", Toast.LENGTH_SHORT).show()
+                        }
                     }
+
                     BluetoothProfile.STATE_DISCONNECTED -> {
                         Log.w("BLEdevice", "Disconnected from GATT server")
+
+                        handler.post {
+                            Toast.makeText(context, "❌ Bluetooth Device Disconnected", Toast.LENGTH_SHORT).show()
+                        }
+
                         handler.postDelayed({
                             lastDevice?.let {
                                 Log.d("BLEdevice", "Attempting to reconnect...")
                                 connectToDevice(it)
                             }
-                        }, 3000) // retry after 3 seconds
+                        }, 3000)
                     }
                 }
             }
 
             override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
                 val service = gatt.getService(BleConstants.SERVICE_UUID)
-                val characteristic = service?.getCharacteristic(BleConstants.CHARACTERISTIC_UUID)
 
-                if (characteristic != null) {
-                    gatt.setCharacteristicNotification(characteristic, true)
+                val bpmChar = service?.getCharacteristic(BleConstants.CHARACTERISTIC_BPM_UUID)
+                val gyroChar = service?.getCharacteristic(BleConstants.CHARACTERISTIC_GYRO_UUID)
 
-                    val descriptor = characteristic.getDescriptor(BleConstants.NOTIFY_DESCRIPTOR_UUID)
-                    descriptor?.let {
-                        it.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
-                        gatt.writeDescriptor(it)
-                    }
-                } else {
-                    Log.w("BLEdevice", "Characteristic not found in service")
+                bpmChar?.let {
+                    gatt.setCharacteristicNotification(it, true)
+                    val descriptor = it.getDescriptor(BleConstants.NOTIFY_DESCRIPTOR_UUID)
+                    descriptor?.let { pendingDescriptorWrites.add(it) }
                 }
+
+                gyroChar?.let {
+                    gatt.setCharacteristicNotification(it, true)
+                    val descriptor = it.getDescriptor(BleConstants.NOTIFY_DESCRIPTOR_UUID)
+                    descriptor?.let { pendingDescriptorWrites.add(it) }
+                }
+
+                writeNextDescriptor()
+            }
+
+            override fun onDescriptorWrite(gatt: BluetoothGatt, descriptor: BluetoothGattDescriptor, status: Int) {
+                super.onDescriptorWrite(gatt, descriptor, status)
+                writeNextDescriptor()
+            }
+
+            private fun writeNextDescriptor() {
+                if (pendingDescriptorWrites.isNotEmpty()) {
+                    val descriptor = pendingDescriptorWrites.removeAt(0)
+                    descriptor.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+                    currentGatt?.writeDescriptor(descriptor)
+                }
+            }
+
+            override fun onMtuChanged(gatt: BluetoothGatt, mtu: Int, status: Int) {
+                super.onMtuChanged(gatt, mtu, status)
+                Log.d("BLEdevice", "✅ MTU changed to: $mtu")
             }
 
             override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
                 val message = characteristic.getStringValue(0) ?: return
-                Log.d("BLEdevice", "Raw message: $message")
-
-                val bpm = message.toIntOrNull()
-                if (bpm != null && bpm in 40..180) {
-                    Log.d("BLEdevice", "Valid BPM received: $bpm")
-                    onMessage("BPM: $bpm")
-                } else {
-                    Log.w("BLEdevice", "Invalid BPM data received: $message")
+                Log.d("BLEdevice", "Received characteristic UUID: ${characteristic.uuid}")
+                when (characteristic.uuid) {
+                    BleConstants.CHARACTERISTIC_BPM_UUID -> {
+                        Log.d("BLEdevice", "\uD83D\uDD34 BPM Data: $message")
+                        onMessageReceived("bpm", message)
+                    }
+                    BleConstants.CHARACTERISTIC_GYRO_UUID -> {
+                        Log.d("BLEdevice", "\uD83D\uDD35 GYRO Data: $message")
+                        onMessageReceived("gyro", message)
+                    }
+                    else -> {
+                        Log.w("BLEdevice", "Unknown Characteristic UUID: ${characteristic.uuid}")
+                    }
                 }
             }
         })

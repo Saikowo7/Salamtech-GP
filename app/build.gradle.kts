@@ -7,7 +7,9 @@ plugins {
 android {
     namespace = "com.example.salamtech_gp"
     compileSdk = 35
-
+    aaptOptions {
+        noCompress("tflite")
+    }
     defaultConfig {
         applicationId = "com.example.salamtech_gp"
         minSdk = 26
@@ -31,8 +33,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
+    }
+    buildFeatures {
+        mlModelBinding = true
     }
 }
 
@@ -48,8 +54,14 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.firebase.auth)
     implementation(libs.mpandroidchart)
+    implementation(libs.tensorflow.lite)
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.fragment.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 
 }

@@ -400,6 +400,7 @@
 
                         <!-- Middle Section: Graph View -->
                         <TextView
+                            android:id="@+id/AnomalyText"
                             android:text="Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
